@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+package-lock.json  # Optional: some prefer to keep this; ignore if using yarn or pnpm
+yarn-error.log*
+
+# Environment Variables (CRITICAL)
+.env
+.env.*
+!.env.example      # Keep the template file to show needed keys
+
+# Runtime & Logs
+logs/
+*.log
+npm-debug.log*
+pids/
+*.pid
+*.seed
+*.flare
+
+# Build & Compiled Code (if using TypeScript)
+dist/
+lib/
+out/
+tsconfig.tsbuildinfo
+
+# Testing
+coverage/
+.nyc_output
+
+# OS & IDE
+.DS_Store
+.vscode/
+.idea/
+
+pakage-lock.json
+package.json
