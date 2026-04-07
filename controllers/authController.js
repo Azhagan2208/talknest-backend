@@ -10,19 +10,12 @@ export const register = async (req, res) => {
     if (!username || !email || !password) {
       return res.status(400).json("All Fields Required!!");
     }
-    let imageUrl = "";
-    if (profilePic) {
-      const result = await cloudinary.uploader.upload(profilePic, {
-        folder: profiles,
-      });
-      imageUrl = result.secure_url;
-    }
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       username,
       email,
-      pawword: hashedPassword,
-      profilePic: imageUrl,
+      password: hashedPassword,
+      profilePic
     });
     res.json(user);
   } catch (error) {
