@@ -6,13 +6,14 @@ import Users from "../models/Users.js";
 
 export const register = async (req, res) => {
   try {
-    const { username, email, password, profilePic } = req.body;
+    const { username,tagline, email, password, profilePic } = req.body;
     if (!username || !email || !password) {
       return res.status(400).json("All Fields Required!!");
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       username,
+      tagline,
       email,
       password: hashedPassword,
       profilePic

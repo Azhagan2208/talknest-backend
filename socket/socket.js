@@ -1,5 +1,3 @@
-// socket/socket.js
-
 const users = {}; // userId -> socketId
 
 const socketHandler = (io) => {
@@ -14,18 +12,9 @@ const socketHandler = (io) => {
 
     socket.on("sendMessage", ({ receiver, message }) => {
       const receiverSocket = users[receiver];
-
       if (receiverSocket) {
         io.to(receiverSocket).emit("receiveMessage", message);
       }
-    });
-    socket.on("joinGroup", (groupId) => {
-      socket.join(groupId);
-      console.log(`Joined group ${groupId}`);
-    });
-
-    socket.on("sendGroupMessage", ({ groupId, message }) => {
-      io.to(groupId).emit("receiveGroupMessage", message);
     });
 
     socket.on("callUser", ({ to, offer }) => {
@@ -51,7 +40,6 @@ const socketHandler = (io) => {
 
     socket.on("disconnect", () => {
       console.log("User disconnected:", socket.id);
-
       if (socket.userId) {
         delete users[socket.userId];
       }

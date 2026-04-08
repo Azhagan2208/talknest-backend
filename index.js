@@ -8,7 +8,8 @@ import connectDB from "./config/db.js";
 import socketHandler from "./socket/socket.js";
 
 import authRoutes from "./routes/authRoutes.js";
-import messageRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import messageRoutes from "./routes/messageRoutes.js"
 
 dotenv.config();
 connectDB();
@@ -20,6 +21,8 @@ app.use(express.json({ limit: "10mb" }));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/users", userRoutes);
+console.log("Routes connected")
 
 const server = http.createServer(app);
 const PORT = process.env.PORT;
