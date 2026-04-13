@@ -1,21 +1,12 @@
-import cloudinary from "../config/cloudinary.js";
 import Messages from "../models/Messages.js";
 
 export const sendMessage = async (req, res) => {
   try {
-    const { text, receiver, image } = req.body;
-    let imageUrl = "";
-    if (image) {
-      const result = await cloudinary.uploader.upload(image, {
-        folder: "messages",
-      });
-      imageUrl = result.secure_url;
-    }
+    const { text, receiver } = req.body;
     const message = await Messages.create({
       sender: req.user.id,
       receiver,
       text,
-      image: imageUrl,
     });
     res.json(message);
   } catch (error) {

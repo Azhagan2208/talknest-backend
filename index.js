@@ -22,7 +22,6 @@ app.use(express.json({ limit: "10mb" }));
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
-console.log("Routes connected")
 
 const server = http.createServer(app);
 const PORT = process.env.PORT;

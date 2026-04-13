@@ -1,7 +1,6 @@
 import User from "../models/Users.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import cloudinary from "../config/cloudinary.js";
 import Users from "../models/Users.js";
 
 export const register = async (req, res) => {
@@ -31,7 +30,7 @@ export const login = async (req, res) => {
   if (!user) {
     return res.status(400).json("User not Found!");
   }
-  const validatePassword = await bcrypt.compare(password, user.password);
+  const validatePassword = bcrypt.compare(password, user.password);
   if (!validatePassword) {
     return res.status(400).json("Wrong Password");
   }
